@@ -1,0 +1,302 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;400;700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #050505;
+    color: #fff;
+    overflow-x: hidden;
+}
+
+.topbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: rgba(19, 19, 22, 0.9);
+    padding: 20px;
+    z-index: 1000;
+}
+
+.nav-content {
+    max-width: 800px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+}
+
+.nav-item {
+    text-decoration: none;
+    color: #fff;
+    font-weight: 500;
+    padding: 8px 16px;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+}
+
+.nav-item:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.section {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    transition: background-color 0.8s ease;
+}
+
+#hero {
+    background-color: #013038;
+}
+
+#login-section {
+    background-color: #050505;
+}
+
+#tutorial-section {
+    background-color: #ffffff;
+    color: #000;
+}
+
+#history-section {
+    background-color: #050505;
+    color: #fff;
+}
+
+.content {
+    max-width: 800px;
+    text-align: center;
+}
+
+h1 {
+    font-size: 4rem;
+    margin-bottom: 20px;
+    font-weight: 700;
+}
+
+h2 {
+    font-size: 2.5rem;
+    margin-bottom: 30px;
+}
+
+.button-group {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+}
+
+.btn {
+    padding: 12px 24px;
+    border: none;
+    border-radius: 5px;
+    background-color: #013846;
+    color: #fff;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn:hover {
+    background-color: #024e62;
+    transform: translateY(-2px);
+}
+
+
+.tutorial-image {
+    max-width: 90%;          /* Reduced from 100% to prevent full width */
+    width: 1000px;           /* Set a larger base width */
+    height: auto;            /* Maintain aspect ratio */
+    border-radius: 8px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);  /* Enhanced shadow */
+    margin: 40px auto;       /* Added margin for better spacing */
+    display: block;          /* Ensures proper centering */
+    transition: transform 0.3s ease; /* Smooth transform transition */
+}
+
+.tutorial-image:hover {
+    transform: scale(1.02);  /* Subtle zoom on hover */
+}
+
+.hidden {
+    opacity: 0;
+    filter: blur(5px);
+    transform: translateY(100px);
+    transition: all 1s ease;
+}
+
+.show {
+    opacity: 1;
+    filter: blur(0);
+    transform: translateY(0);
+}
+
+@media (max-width: 650px) {
+    .nav-content {
+        gap: 15px;
+    }
+
+    h1 {
+        font-size: 3rem;
+    }
+
+    h2 {
+        font-size: 2rem;
+    }
+
+    .tutorial-image {
+        width: 80%;          /* Adjust width for mobile */
+        max-width: 400px;    /* Set maximum width for smaller screens */
+        margin: 20px auto;   /* Reduce margin on mobile */
+    }
+}
+.nav-item.active {
+    background-color: rgba(255, 255, 255, 0.2);
+    color: #fff;
+}
+
+.scroll-progress {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 3px;
+    background: linear-gradient(to right, #4f46e5, #06b6d4);
+    z-index: 1001;
+    transition: width 0.3s ease;
+}
+
+/* Ensure sections have proper scroll-padding to account for fixed navbar */
+html {
+    scroll-padding-top: 80px; /* Adjust this value based on your navbar height */
+}
+
+/* Smooth scroll behavior for the entire page */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Add transition to the background color change */
+body {
+    transition: background-color 0.5s ease;
+}
+
+/* Add these styles to your CSS */
+#hero .content {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+}
+
+.hero-image {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    max-width: 90%;
+    width: 300px;
+    height: auto;
+    opacity: 0.2;  /* Makes the logo subtle in the background */
+    z-index: 1;    /* Places it behind other content */
+}
+
+#hero h1 {
+    position: relative;
+    z-index: 2;    /* Places text above the logo */
+    margin: 0;
+    color: #fff;   /* Ensures text is visible */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3); /* Adds depth to text */
+}
+
+#hero .button-group {
+    position: relative;
+    z-index: 2;    /* Places button above the logo */
+    margin-top: 2rem;
+}
+
+/* Animation for the hero section */
+#hero.hidden .hero-image {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.9);
+    transition: all 1s ease;
+}
+
+#hero.show .hero-image {
+    opacity: 0.2;
+    transform: translate(-50%, -50%) scale(1);
+}
+
+/* Specific styles for the hero section button */
+#hero .btn {
+    background-color: #f07007;  /* Indigo color */
+    color: #ffffff;
+    padding: 12px 30px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1.1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px rgba(79, 70, 229, 0.2);  /* Subtle shadow matching button color */
+}
+
+#hero .btn:hover {
+    background-color: #4338CA;  /* Slightly darker on hover */
+    transform: translateY(-2px);
+    box-shadow: 0 6px 8px rgba(79, 70, 229, 0.3);
+}
+
+#hero .btn:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 4px rgba(79, 70, 229, 0.2);
+}
+
+.nav-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: 0 20px;
+}
+
+.logo-container {
+    display: flex;
+    align-items: center;
+}
+
+.topbar-logo {
+    height: 60px;  /* Adjust this value to make logo bigger/smaller */
+    width: auto;
+    margin-right: 20px;
+    opacity: 0.9;
+}
+
+/* Update existing nav-content styles to work with new structure */
+.nav-content {
+    display: flex;
+    gap: 30px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .topbar-logo {
+        height: 30px;  /* Slightly smaller on mobile */
+    }
+    
+    .nav-content {
+        gap: 15px;
+    }
+}
