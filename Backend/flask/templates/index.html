@@ -1,0 +1,361 @@
+<!--<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eye Blink Morse Code Decoder</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            margin: 0;
+            height: 100vh;
+            background-color: #75c9d4;
+        }
+        #video {
+            width: 80%;
+            max-width: 640px;
+            margin-bottom: 20px;
+        }
+        #output {
+            font-size: 24px;
+            color: #282929;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 18px;
+            border: none;
+            background-color: #28a745;
+            color: white;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        button:hover {
+            background-color: #218838;
+        }
+    </style>
+</head>
+<body>
+    <h1>Eye Blink Morse Code Decoder</h1>
+    <img id="video" src="{{ url_for('video_feed') }}" />
+    <div id="output">
+        <div><strong>Morse Code:</strong> <span id="morse_code"></span></div>
+        <div><strong>Translated Text:</strong> <span id="translated_text"></span></div>
+    </div>
+
+    
+    <button id="startButton">Start Decoder</button>
+    <button id="stopButton">Stop Decoder</button>
+    <p id="statusMessage"></p>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.6.1/socket.io.min.js"></script>
+    <script>
+        const socket = io.connect('http://' + document.domain + ':' + location.port);
+
+        // Listen for updates from the server
+        socket.on('update', function(data) {
+            document.getElementById('morse_code').textContent = data.morse_code;
+            document.getElementById('translated_text').textContent = data.translated_text;
+        });
+        document.getElementById("startButton").addEventListener("click", function () {
+            fetch("/start", { method: "POST" })
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById("statusMessage").textContent = data.message || data.error;
+
+                    // Ensure the video feed starts displaying immediately
+                    let video = document.getElementById("video");
+                    video.src = video.src + "?t=" + new Date().getTime();  // Forces browser to reload the video feed
+                })
+                .catch(error => {
+                    document.getElementById("statusMessage").textContent = "Error starting decoder!";
+                    console.error(error);
+            });
+        });
+        document.getElementById("stopButton").addEventListener("click", function () {
+            fetch("/stop", { method: "POST" })
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById("statusMessage").textContent = data.message || data.error;
+
+                    // Stop the video feed by hiding it
+                    let video = document.getElementById("video");
+                    video.src = "";  // This will stop loading the video stream
+                })
+                .catch(error => {
+                    document.getElementById("statusMessage").textContent = "Error stopping decoder!";
+                    console.error(error);
+            });
+        });
+
+
+        
+        
+    </script>
+</body>
+</html>
+-->
+
+
+
+
+
+
+
+
+
+
+<!--<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eye Blink Morse Code Decoder</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            margin: 0;
+            height: 100vh;
+            background-color: #fff; /* White background */
+            color: #282929; /* Dark text for contrast */
+        }
+        #video {
+            width: 80%;
+            max-width: 640px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc; /* Added border for visual separation */
+        }
+        #output {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 18px;
+            border: none;
+            background-color: #20c997; /* Teal color */
+            color: white;
+            cursor: pointer;
+            margin-top: 10px;
+            border-radius: 5px; /* Rounded corners for buttons */
+        }
+        button:hover {
+            background-color: #16a085; /* Darker teal on hover */
+        }
+        #morseCodeImage {
+            width: 80%;
+            max-width: 640px;
+            margin-top: 20px;
+            border: 1px solid #ccc; /* Added border for visual separation */
+        }
+    </style>
+</head>
+<body>
+    <h1>Eye Blink Morse Code Decoder</h1>
+    <img id="video" src="{{ url_for('video_feed') }}" alt="Video Feed" />
+    <div id="output">
+        <div><strong>Morse Code:</strong> <span id="morse_code"></span></div>
+        <div><strong>Translated Text:</strong> <span id="translated_text"></span></div>
+    </div>
+    
+    <button id="startButton">Start Decoder</button>
+    <button id="stopButton">Stop Decoder</button>
+    <p id="statusMessage"></p>
+
+    <img id="morseCodeImage" src="Dot_Dash_Decode\Backend\flask\images\morsecode.png" alt="Morse Code Chart">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.6.1/socket.io.min.js"></script>
+    <script>
+        const socket = io.connect('http://' + document.domain + ':' + location.port);
+
+        // Listen for updates from the server
+        socket.on('update', function(data) {
+            document.getElementById('morse_code').textContent = data.morse_code;
+            document.getElementById('translated_text').textContent = data.translated_text;
+        });
+        document.getElementById("startButton").addEventListener("click", function () {
+            fetch("/start", { method: "POST" })
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById("statusMessage").textContent = data.message || data.error;
+
+                    // Ensure the video feed starts displaying immediately
+                    let video = document.getElementById("video");
+                    video.src = video.src + "?t=" + new Date().getTime();  // Forces browser to reload the video feed
+                })
+                .catch(error => {
+                    document.getElementById("statusMessage").textContent = "Error starting decoder!";
+                    console.error(error);
+            });
+        });
+        document.getElementById("stopButton").addEventListener("click", function () {
+            fetch("/stop", { method: "POST" })
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById("statusMessage").textContent = data.message || data.error;
+
+                    // Stop the video feed by hiding it
+                    let video = document.getElementById("video");
+                    video.src = "";  // This will stop loading the video stream
+                })
+                .catch(error => {
+                    document.getElementById("statusMessage").textContent = "Error stopping decoder!";
+                    console.error(error);
+            });
+        });
+    </script>
+</body>
+</html>
+
+-->
+
+
+
+
+
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eye Blink Morse Code Decoder</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            margin: 0;
+            height: 100vh;
+            background-color: #fff; /* White background */
+            color: #282929; /* Dark text for contrast */
+        }
+        #video {
+            width: 80%;
+            max-width: 640px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+        }
+        #output {
+            font-size: 24px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 18px;
+            border: none;
+            background-color: #20c997; /* Teal color */
+            color: white;
+            cursor: pointer;
+            margin-top: 10px;
+            border-radius: 5px;
+        }
+        button:hover {
+            background-color: #16a085; /* Darker teal on hover */
+        }
+        #morseCodeImage {
+            width: 80%;
+            max-width: 640px;
+            margin-top: 20px;
+            border: 1px solid #ccc;
+            display: none;
+            transition: opacity 0.5s ease-in-out; /* Smooth transition */
+            opacity: 0;
+        }
+    </style>
+</head>
+<body>
+    <h1>Eye Blink Morse Code Decoder</h1>
+    
+    <!-- Video Feed -->
+    <img id="video" src="{{ url_for('video_feed') }}" alt="Video Feed" />
+
+    <!-- Output Section -->
+    <div id="output">
+        <div><strong>Morse Code:</strong> <span id="morse_code"></span></div>
+        <div><strong>Translated Text:</strong> <span id="translated_text"></span></div>
+    </div>
+
+    <!-- Buttons -->
+    <button id="startButton">Start Decoder</button>
+    <button id="stopButton">Stop Decoder</button>
+    
+    <p id="statusMessage"></p>
+
+    <!-- Morse Code Chart -->
+    <img id="morseCodeImage" src="{{ url_for('static', filename='images/morsecode.png') }}" alt="Morse Code Chart">
+
+    <!-- Include Socket.io -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.6.1/socket.io.min.js"></script>
+
+    <script>
+        const socket = io.connect('http://' + document.domain + ':' + location.port);
+        
+        // Listen for updates from the server
+        socket.on('update', function(data) {
+            document.getElementById('morse_code').textContent = data.morse_code;
+            document.getElementById('translated_text').textContent = data.translated_text;
+        });
+
+        document.getElementById("startButton").addEventListener("click", function () {
+            fetch("/start", { method: "POST" })
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById("statusMessage").textContent = data.message || data.error;
+
+                    // Reload video feed to ensure real-time display
+                    let video = document.getElementById("video");
+                    video.src = "{{ url_for('video_feed') }}" + "?t=" + new Date().getTime();
+
+                    // Show Morse Code Image with smooth transition
+                    let morseImage = document.getElementById("morseCodeImage");
+                    morseImage.style.display = "block";
+                    setTimeout(() => {
+                        morseImage.style.opacity = "1";
+                    }, 100);
+                })
+                .catch(error => {
+                    document.getElementById("statusMessage").textContent = "Error starting decoder!";
+                    console.error(error);
+                });
+        });
+
+        document.getElementById("stopButton").addEventListener("click", function () {
+            fetch("/stop", { method: "POST" })
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById("statusMessage").textContent = data.message || data.error;
+
+                    // Stop video feed by setting an empty source
+                    let video = document.getElementById("video");
+                    video.src = "";
+
+                    // Hide Morse Code Image smoothly
+                    let morseImage = document.getElementById("morseCodeImage");
+                    morseImage.style.opacity = "0";
+                    setTimeout(() => {
+                        morseImage.style.display = "none";
+                    }, 500);
+                })
+                .catch(error => {
+                    document.getElementById("statusMessage").textContent = "Error stopping decoder!";
+                    console.error(error);
+                });
+        });
+    </script>
+</body>
+</html>
