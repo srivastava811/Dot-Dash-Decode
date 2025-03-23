@@ -9,11 +9,12 @@ Also, during a television interview in 1966, Jeremiah Denton, a U.S. Navy Comman
 
 [![Watch the video](https://img.youtube.com/vi/muzAhCLzpic/maxresdefault.jpg)](https://youtu.be/muzAhCLzpic)
 
-### Features
--**Real-time eye blink detection** using Computer Vision
--**MORSE Code translation** into readable text
--**Hands-free communication** for users with limited mobility
--**User-friendly UI** with simple controls
+## ✨ Features  
+- **Real-time eye blink detection** using Computer Vision  
+- **Morse Code translation** into readable text  
+- **Hands-free communication** for users with limited mobility  
+- **User-friendly UI** with simple controls  
+
 
 
 
