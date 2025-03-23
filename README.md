@@ -13,7 +13,21 @@ Also, during a television interview in 1966, Jeremiah Denton, a U.S. Navy Comman
 - **Real-time eye blink detection** using Computer Vision  
 - **Morse Code translation** into readable text  
 - **Hands-free communication** for users with limited mobility  
-- **User-friendly UI** with simple controls  
+- **User-friendly UI** with simple controls
+
+## ⚙️ Understanding the Project
+
+
+
+
+
+Now lets dive into the Technical part of the project
+
+## 🛠️ Technical Aspect
+
+#### How is this tool supposed to work?
+
+The user is supposed to start the tool and input the MORSE Code through his eyes so that means access to user's webcam is required. The camera inputs the frames that must be processed to detect blink and determine whether the blink a long blink or a short blink.
 
 
 
