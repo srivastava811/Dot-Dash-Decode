@@ -15,19 +15,33 @@ Also, during a television interview in 1966, Jeremiah Denton, a U.S. Navy Comman
 - **Hands-free communication** for users with limited mobility  
 - **User-friendly UI** with simple controls
 
-## ⚙️ Understanding the Project
-
-
-
-
-
-Now lets dive into the Technical part of the project
 
 ## 🛠️ Technical Aspect
 
-#### How is this tool supposed to work?
+#### Dependencies
+##### Frontend Dependencies
+- **Node.js (Version 22.14.0)
+- **React.js
+- *Dependencies:
+- **Axios
 
-The user is supposed to start the tool and input the MORSE Code through his eyes so that means access to user's webcam is required. The camera inputs the frames that must be processed to detect blink and determine whether the blink a long blink or a short blink.
+##### Backend Dependencies
+- ** Cmake (Version 3.31.3) Cmake is a cross-platform open source build system.
+- ** Microsoft Visual Studio Installer (Microsoft Visual C++ 2015-20122 Redistributable (x86))
+- ** Visual Studio Build Tools (Version 17.12.3)
+- ** Python (3.13.1)
+- *Dependencies:
+- **Flask
+- **cv2
+- **dlib library
+- **imutils
+- **SocketIO
+- **CORS
+- **SQLAlchemy
+- **JWTManager
+- **Bcrypt
+
+
 
 
 
